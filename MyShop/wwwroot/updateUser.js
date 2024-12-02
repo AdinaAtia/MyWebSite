@@ -39,8 +39,8 @@ const updateLevel = (dataPost) => {
     level.value = dataPost
 }
 const getPassword = () => {
-    const Password = document.getElementById("registerPassword").value;
-    return Password;
+     Password = document.getElementById("registerPassword").value;
+    return {Password};
 }
 const cheakPassword = async () => {
     const password = getPassword();

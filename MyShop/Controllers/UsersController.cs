@@ -60,10 +60,10 @@ namespace MyShop.Controllers
 
         // PUT api/<UsersController>/5
         [HttpPut("{id}")]
-        public ActionResult<User> Put(int id, [FromBody] User user)
+        public async Task<ActionResult<User>> Put(int id, [FromBody] User user)
 
         {
-             user = service.Put(id, user);
+             user = await service.Put(id, user);
             if (user != null)
             {
                 return Ok(user);

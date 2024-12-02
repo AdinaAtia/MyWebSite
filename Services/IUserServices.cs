@@ -17,7 +17,7 @@ namespace Services
 
 
 
-         User Put(int id, User user);
+        Task<User>  Put(int id, User user);
 
        
          int cheackPassword(string password);

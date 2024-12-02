@@ -26,10 +26,10 @@ namespace Services
         {
             return await repository.Post(user);
         }
-        public User Put(int id,  User user)
+        public async Task<User> Put(int id,  User user)
 
         {
-            return repository.Put(id,user);
+            return await repository.Put(id,user);
 
         }
         public int cheackPassword(string password)
