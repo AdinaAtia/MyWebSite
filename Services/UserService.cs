@@ -17,17 +17,15 @@ namespace Services
         {
                 this.repository = repository;
         }
-        public User Login(string email, string password)
+        public async Task<User> Login(string email, string password)
         {
-            return repository.Login(email, password);
+            return await repository.Login(email, password);
         }
 
-        public User Post(User user)
+        public async Task<User> Post(User user)
         {
-            return repository.Post(user);
+            return await repository.Post(user);
         }
-
-
         public User Put(int id,  User user)
 
         {

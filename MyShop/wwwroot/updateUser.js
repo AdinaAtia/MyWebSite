@@ -33,12 +33,47 @@ const update = async () => {
         console.log('error:', Error)
 
     }
-
-
- 
 }
+const updateLevel = (dataPost) => {
+    const level = document.querySelector("#level")
+    level.value = dataPost
+}
+const getPassword = () => {
+    const Password = document.getElementById("registerPassword").value;
+    return Password;
+}
+const cheakPassword = async () => {
+    const password = getPassword();
+    if (password) {
+        try {
+            const leavel = await fetch('api/Users/password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                //fetch(`api/Users/login?email=${currentUser.Email}& password=${currentUser.Password}`, {
+                //             method: "POST",
+                //             headers: {
+                //                 'Content-Type': 'application/json'
+                //             },
+
+                body: JSON.stringify(password)
+            });
+
+            const dataPost = await leavel.json();
+            alert(dataPost);
+            updateLevel(dataPost)
+        }
+        catch {
+            console.log(err);
 
 
 
+        }
+    }
+
+
+
+}
 
 

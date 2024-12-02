@@ -5,41 +5,36 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Entities;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace Repositories
 {
-    public class UserRepository: IUserRepository
+    public class UserRepository :IUserRepository
     {
-        public static List<User> Users { get; set; }
-        //public UserRepository()
-        //{
-
-        //}
-
-        const string filePath = "M:\\MyShop\\MyShop\\user.txt";
-        
-
-        public User Login(string email, string password)
+        CatagoryContext Manger_DB_context;
+        public UserRepository(CatagoryContext Manger_DB_context)
         {
-            using (StreamReader reader = System.IO.File.OpenText(filePath))
-            {
-                string? currentUserInFile;
-                while ((currentUserInFile = reader.ReadLine()) != null)
-                {
-                    User userFind = JsonSerializer.Deserialize<User>(currentUserInFile);
-                    if (userFind.Email == email && userFind.Password == password)
-                        return userFind;
-                }
-            }
-            return null;
+            this.Manger_DB_context = Manger_DB_context;
         }
-        public User Post( User user)
+        const string filePath = "M:\\New folder\\MyShop\\MyShop\\user.txt";
+        public async Task<User> Login(string email, string password)
         {
-            int numberOfUsers = System.IO.File.ReadLines(filePath).Count();
-            user.UserId = numberOfUsers + 1;
-            string userJson = JsonSerializer.Serialize(user);
-            System.IO.File.AppendAllText(filePath, userJson + Environment.NewLine);
+           
+            User userFind = await Manger_DB_context.Users.FirstOrDefaultAsync(user => user.Email == email && user.Password == password);
+           //if(userFind.Email== email && userFind.Password == password)
+           // {
+                return userFind;
+
+            //}
+            //return null;
+
+
+        }
+        public async Task<User> Post( User user)
+        {
+            await Manger_DB_context.Users.AddAsync(user);
+            await Manger_DB_context.SaveChangesAsync();
             return user;
         }
 

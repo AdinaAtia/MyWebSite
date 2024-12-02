@@ -3,21 +3,14 @@ const showRegister = () => {
     const register1 = document.querySelector(".register");
     register1.classList.remove("register");
 }
-
 const getUserDetailsFromHtml = () => {
   
-    Email = document.getElementById("registerEmail").value,
-        Password = document.getElementById("registerPassword").value,
-        FirstName = document.getElementById("registerFirstName").value,
-        LastName = document.getElementById("registerLastName").value,
-    alert(Email);
-    alert(Password);
-   
-    alert(FirstName);
-    alert(LastName);
+         Email = document.getElementById("registerEmail").value,
+         Password = document.getElementById("registerPassword").value,
+         FirstName = document.getElementById("registerFirstName").value,
+         LastName = document.getElementById("registerLastName").value
     return { Email, Password, FirstName, LastName };
 }
-
 const register = async () => {
     try {
         const user = getUserDetailsFromHtml();
@@ -30,18 +23,14 @@ const register = async () => {
 
                 body: JSON.stringify(user)
             }
-
-
             );
             const data = await registerPost.json()
             console.log(data)
-
         }
     }
     catch (Error) {
         console.log(Error);
     }
-
 }
     const currentUserDetailsFromHtml = () => {
         const Email = document.getElementById("loginEmail").value;
@@ -52,12 +41,9 @@ const getPassword = () => {
     const Password = document.getElementById("registerPassword").value;
     return  Password ;
 }
-
 const updateLevel = (dataPost) => {
     const level = document.querySelector("#level")
     level.value = dataPost
-
-
 }
 const cheakPassword = async () => {
     const password = getPassword();
@@ -79,17 +65,15 @@ const cheakPassword = async () => {
 
 
             const dataPost = await leavel.json();
+
             alert(dataPost);
             updateLevel(dataPost)
         }
         catch {
             console.log(err);
-
-
-
         }
     }
-
+}
     const Login = async () => {
 
         const currentUser = currentUserDetailsFromHtml();
@@ -120,9 +104,10 @@ const cheakPassword = async () => {
                     alert("user not found")
 
                 else {
+                    
                     const data = await loginPost.json();
                     console.log(data);
-
+         
                     sessionStorage.setItem("id", data.userId)
                     window.location.href = "updateUser.html"
                 }
@@ -135,4 +120,4 @@ const cheakPassword = async () => {
 
         }
     }
-}
+
