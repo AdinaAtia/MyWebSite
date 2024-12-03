@@ -17,7 +17,7 @@ namespace Repositories
         {
             this.Manger_DB_context = Manger_DB_context;
         }
-        const string filePath = "M:\\New folder\\MyShop\\MyShop\\user.txt";
+        const string filePath = "M:\\New folder\\MyShop\\MyShop\\user.txt";        
         public async Task<User> Login(string email, string password)
         {
 
