@@ -20,17 +20,9 @@ namespace MyShop.Controllers
         }
         // GET: api/<UsersController>
         [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
+        
         // GET api/<UsersController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+      
 
         // POST api/<UsersController>
         [HttpPost]
@@ -61,17 +53,12 @@ namespace MyShop.Controllers
         // PUT api/<UsersController>/5
         [HttpPut("{id}")]
         public async Task<ActionResult<User>> Put(int id, [FromBody] User user)
-
         {
              user = await service.Put(id, user);
             if (user != null)
             {
                 return Ok(user);
             }
-
-
-
-
             return NoContent();
 
         }

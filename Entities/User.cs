@@ -14,6 +14,8 @@ public partial class User
     [StringLength(15, ErrorMessage = "FirstName can be between 2 till 15", MinimumLength = 2)]
     public string? FirstName { get; set; }
     [StringLength(15, ErrorMessage = "LastName can be between 2 till 15", MinimumLength = 2)]
-   
     public string? LastName { get; set; }
+
+    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }
+

@@ -6,12 +6,14 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Entities;
 using Microsoft.EntityFrameworkCore;
+//using MyShop.Models;
 
 
 namespace Repositories
 {
     public class UserRepository : IUserRepository
     {
+        
         CatagoryContext Manger_DB_context;
         public UserRepository(CatagoryContext Manger_DB_context)
         {
@@ -25,7 +27,6 @@ namespace Repositories
             //if(userFind.Email== email && userFind.Password == password)
             // {
             return userFind;
-
             //}
             //return null;
 
