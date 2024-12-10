@@ -17,7 +17,7 @@ namespace Repositories
         {
             this.Manger_DB_context = Manger_DB_context;
         }
-        const string filePath = "M:\\New folder\\MyShop\\MyShop\\user.txt";
+        const string filePath = "M:\\New folder\\MyShop\\MyShop\\user.txt";//
         public async Task<User> Login(string email, string password)
         {
 
@@ -34,7 +34,9 @@ namespace Repositories
         public async Task<User> Post(User user)
         {
             await Manger_DB_context.Users.AddAsync(user);
+            //var res=await Manger_DB_context.Users.AddAsync(user);
             await Manger_DB_context.SaveChangesAsync();
+            //return res- the created user with the id
             return user;
         }
 
