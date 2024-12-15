@@ -17,8 +17,9 @@ namespace Repositories
         }
         public async Task<List<Category>> Get()
         {
-            List<Category> category = await Manger_DB_context.Categories.ToListAsync();
-            return category;
+            //List<Category> category = 
+                return await Manger_DB_context.Categories.ToListAsync();
+            //return category;
         }
         //public async Task<Category> GetById(int id)
         //{
