@@ -17,8 +17,9 @@ namespace Repositories
         }
     public async Task<List<Product>> Get()
     {
-            List<Product> products = await Manger_DB_context.Products.ToListAsync();
-            return products;
+            //List<Product> products = 
+                return await Manger_DB_context.Products.ToListAsync();
+            //return products;
         }
     
 }
