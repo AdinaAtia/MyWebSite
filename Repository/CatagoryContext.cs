@@ -14,7 +14,6 @@ public partial class CatagoryContext : DbContext
         : base(options)
     {
     }
-
     public virtual DbSet<Category> Categories { get; set; }
 
     public virtual DbSet<Order> Orders { get; set; }
@@ -25,9 +24,9 @@ public partial class CatagoryContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){ }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        //=> optionsBuilder.UseSqlServer("Server=SRV2\\PUPILS;Database=Catagory;Trusted_Connection=True;TrustServerCertificate=True");
+        //  wq=> optionsBuilder.UseSqlServer("Server=SRV2\\PUPILS;Database=Catagory;Trusted_Connection=True;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -57,19 +56,18 @@ public partial class CatagoryContext : DbContext
 
         modelBuilder.Entity<OrderItem>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("Order_Item");
+            entity.ToTable("Order_Item");
 
+            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.OrderId).HasColumnName("Order_ID");
             entity.Property(e => e.ProductId).HasColumnName("Product_ID");
             entity.Property(e => e.Quentity).HasColumnName("quentity");
 
-            entity.HasOne(d => d.Order).WithMany()
+            entity.HasOne(d => d.Order).WithMany(p => p.OrderItems)
                 .HasForeignKey(d => d.OrderId)
                 .HasConstraintName("FK_Order_Item_Order");
 
-            entity.HasOne(d => d.Product).WithMany()
+            entity.HasOne(d => d.Product).WithMany(p => p.OrderItems)
                 .HasForeignKey(d => d.ProductId)
                 .HasConstraintName("FK_Order_Item_Products");
         });

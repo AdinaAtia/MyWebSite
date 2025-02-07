@@ -10,7 +10,8 @@ namespace Repositories
     public interface IProductsRepository
     {
         //Task<Product> Login(string email, string password);
-        Task<List<Product>> Get();
-   
+        //Task<List<Product>> Get();
+        Task<List<Product>> Get(string? desc, int? minPrice, int? maxPrice, int?[] categoryIds);
+
     }
 }

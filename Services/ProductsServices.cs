@@ -19,8 +19,9 @@ namespace Services
         this.repository = repository;
         }
         
-        public async Task<List<Product>> Get(){
-            return await repository.Get();
+        public async Task<List<Product>> Get(string? desc, int? minPrice, int? maxPrice, int?[] categoryIds)
+        {
+            return await repository.Get(  desc,   minPrice,   maxPrice,  categoryIds);
     }
        
 

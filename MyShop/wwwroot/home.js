@@ -26,6 +26,13 @@ const register = async () => {
             );
             const data = await registerPost.json()
             console.log(data)
+            if (data) {
+                sessionStorage.setItem("id", data.userId)
+                window.location.href = "Products.html"
+            }
+            else {
+                alert("תקלה ברישום המשתמש")
+            }
         }
     }
     catch (Error) {
@@ -103,13 +110,14 @@ const cheakPassword = async () => {
                 if (loginPost.status == 204)
                     alert("user not found")
 
-                else {
+                else { 
                     
                     const data = await loginPost.json();
                     console.log(data);
          
                     sessionStorage.setItem("id", data.userId)
-                    window.location.href = "updateUser.html"
+                    window.location.href = "Products.html"
+                 /*   window.location.href = "updateUser.html"*/
                 }
             }
             catch (Error) {

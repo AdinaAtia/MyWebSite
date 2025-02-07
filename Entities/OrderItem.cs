@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 namespace Entities;
+
+
 public partial class OrderItem
 {
-    public int? Id { get; set; }
+    public int Id { get; set; }
 
     public int? OrderId { get; set; }
 

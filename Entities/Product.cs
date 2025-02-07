@@ -18,6 +18,8 @@ public partial class Product
     public string? ImgPath { get; set; }
 
     public int? Quentity { get; set; }
+    public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+
 
     public virtual Category Category { get; set; } = null!;
 }
