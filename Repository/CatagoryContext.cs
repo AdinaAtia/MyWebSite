@@ -24,6 +24,8 @@ public partial class CatagoryContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
+    public virtual DbSet<Rating> Ratings { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         //  wq=> optionsBuilder.UseSqlServer("Server=SRV2\\PUPILS;Database=Catagory;Trusted_Connection=True;TrustServerCertificate=True");
@@ -40,7 +42,6 @@ public partial class CatagoryContext : DbContext
         modelBuilder.Entity<Order>(entity =>
         {
             entity.ToTable("Order");
-
             entity.Property(e => e.OrderId).HasColumnName("Order_ID");
             entity.Property(e => e.OrderDate)
                 .HasColumnType("datetime")
@@ -58,7 +59,7 @@ public partial class CatagoryContext : DbContext
         {
             entity.ToTable("Order_Item");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Id).HasColumnName("Id").ValueGeneratedOnAdd(); ;
             entity.Property(e => e.OrderId).HasColumnName("Order_ID");
             entity.Property(e => e.ProductId).HasColumnName("Product_ID");
             entity.Property(e => e.Quentity).HasColumnName("quentity");
@@ -95,6 +96,51 @@ public partial class CatagoryContext : DbContext
             entity.Property(e => e.LastName).HasMaxLength(50);
             entity.Property(e => e.Password).HasMaxLength(50);
         });
+
+        modelBuilder.Entity<Rating>(entity =>
+        {
+            entity.ToTable("RATING");
+
+            entity.Property(e => e.RatingId).HasColumnName("RATING_ID");
+
+            entity.Property(e => e.Host)
+                .HasColumnName("HOST")
+                .HasMaxLength(50);
+
+            entity.Property(e => e.Method)
+                .HasColumnName("METHOD")
+                .HasMaxLength(10)
+                .IsFixedLength();
+
+            entity.Property(e => e.Path)
+                .HasColumnName("PATH")
+                .HasMaxLength(50);
+
+            entity.Property(e => e.RecordDate)
+             .HasColumnName("Record_Date")
+             .HasColumnType("datetime");
+
+            entity.Property(e => e.Referer)
+                .HasColumnName("REFERER")
+                .HasMaxLength(100);
+
+            entity.Property(e => e.UserAgent).HasColumnName("USER_AGENT");
+
+            entity.Property(e => e.UserId).HasColumnName("USER_ID");
+
+            entity.HasOne(d => d.User).WithMany(p => p.Ratings)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK_RATING_Users");
+        });
+
+
+
+
+
+
+
+
+
 
         OnModelCreatingPartial(modelBuilder);
     }

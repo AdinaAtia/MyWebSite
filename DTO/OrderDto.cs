@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public record OrderDTO(int OrderId, DateTime OrderDate, int OrderSum, int UserId,string UserFirstName);
-    public record OrderPostDTO(int OrderId, DateTime OrderDate, List<OrderItemDto> OrderItems);
+    public record OrderDTO(int OrderId, DateTime OrderDate, int OrderSum, int UserId);
+    public record OrderPostDTO(int UserId,  List<OrderItemDTO> OrderItems, int OrderSum);
+    public record OrderItemDTO(int? ProductId, int? Quentity);
 }
  
 

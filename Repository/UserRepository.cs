@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 //using MyShop.Models;
 
 
@@ -15,9 +16,19 @@ namespace Repositories
     {
         
         CatagoryContext Manger_DB_context;
-        public UserRepository(CatagoryContext Manger_DB_context)
+
+        private readonly ILogger<UserRepository> _logger;
+       
+
+
+
+
+
+
+        public UserRepository(CatagoryContext Manger_DB_context, ILogger<UserRepository> logger)
         {
             this.Manger_DB_context = Manger_DB_context;
+            _logger = logger;
         }
         const string filePath = "M:\\New folder\\MyShop\\MyShop\\user.txt";        
         public async Task<User> Login(string email, string password)
@@ -26,6 +37,9 @@ namespace Repositories
             User userFind = await Manger_DB_context.Users.FirstOrDefaultAsync(user => user.Email == email && user.Password == password);
             //if(userFind.Email== email && userFind.Password == password)
             // {
+            if (userFind != null)
+                _logger.LogCritical($"login attempted with User Name: {userFind.FirstName} ,Email: {email} ");
+
             return userFind;
             //}
             //return null;

@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Repositories;
 using Services;
+using NLog.Web;
+using MyShop;
+
 //using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 //builder.Services.AddControllers();
 //builder.Services.AddControllers();
+builder.Host.UseNLog();
 
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserServices, UserService>();
@@ -20,6 +24,10 @@ builder.Services.AddTransient<IProductsRepository, ProductsRepository>();
 builder.Services.AddTransient<IProductsServices, ProductsServices>();
 builder.Services.AddTransient<ICategoryServices, CategoryServices>();
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
+builder.Services.AddTransient<IOrderServices, OrderServices>();
+builder.Services.AddTransient<IOrderRepositories, OrderRepositories>();
+builder.Services.AddTransient<IRatingService, RatingService>();
+builder.Services.AddTransient<IRatingRepository, RatingRepository>();
 //options Builder.UseSqlServer("Server=SRV2\\PUPILS;Database=Catagory;Trusted_Connection=True;TrustServerCertificate=True")
 //builder.Services.AddDbContext<CatagoryContext>(options => options.UseSqlServer(Environment.GetEnvironmentVariable("connectionString")));
 builder.Services.AddDbContext<CatagoryContext>(options => options.UseSqlServer("Server=SRV2\\PUPILS;Database=Catagory;Trusted_Connection=True;TrustServerCertificate=True"));
@@ -39,6 +47,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAuthorization();
+app.UseRatingMiddleware();
 
 app.MapControllers();
 

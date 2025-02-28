@@ -16,10 +16,12 @@ namespace Repositories
         {
             this.Manger_DB_context = Manger_DB_context;
         }
-        public async Task<Order> Post(Order order)
+        public async Task<Order> Post(Order neworder)
         {
-            await Manger_DB_context.Orders.AddAsync(order);
+            neworder.OrderDate = DateTime.Now;
+            Manger_DB_context.Orders.AddAsync(neworder);
             await Manger_DB_context.SaveChangesAsync();
+            Order order = await Manger_DB_context.Orders.Include(currentOrder => currentOrder.User).FirstOrDefaultAsync(currentOrder => currentOrder.OrderId == neworder.OrderId);
             return order;
         }
         public async Task<Order> GetById(int id)

@@ -21,21 +21,21 @@ namespace MyShop.Controllers
             this._mapper = _mapper;
         }
         // GET: api/<OrderController>
-        [HttpGet]
+        //[HttpGet]
       
         // GET api/<OrderController>/5
        
 
         // POST api/<OrderController>
         [HttpPost]
-        public async Task<ActionResult<OrderDTO>> Post([FromBody] OrderDTO order)
+        public async Task<ActionResult<OrderDTO>> Post([FromBody] OrderPostDTO order)
         {
-             Order newOrder = await service.Post(_mapper.Map<OrderPostDTO, Order>(order));
-            //Order neworder = _mapper.Map<OrderPostDTO, Order>(order);
-            //neworder = await service.Post(neworder);
-            if (newOrder != null)
+             //Order newOrder = await service.Post(_mapper.Map<OrderPostDTO, Order>(order));
+            Order neworder = _mapper.Map<OrderPostDTO, Order>(order);
+            neworder = await service.Post(neworder);
+            if (neworder != null)
             {
-                return CreatedAtAction(nameof(GetById), new { id = newOrder.OrderId }, _mapper.Map<Order, OrderDTO>(newOrder));
+                return Ok(_mapper.Map<Order, OrderDTO>(neworder));
              
              /*   return CreatedAtAction(_mapper.Map<Order, OrderDTO>(neworder))*/;
             }
@@ -45,6 +45,7 @@ namespace MyShop.Controllers
         public async Task<ActionResult<OrderDTO>> GetById(int id)
         {
             var order = await service.GetById(id);
+
             if (order != null)
             {
                 return Ok(_mapper.Map <Order, OrderDTO>(order));
