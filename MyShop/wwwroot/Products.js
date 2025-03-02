@@ -103,12 +103,23 @@ const drawProducts = async (products) => {
     }
 }
 const addToCart = (product) => {
+    if (sessionStorage.getItem("id") == null) {
+        alert("על מנת ליצור סל קניות עליך להירשם במערכת")
+    }
+
+    else { 
+       
+
+
+
+
+
     let products = sessionStorage.getItem("shopingBag")
     products = JSON.parse(products)
     products.push(product)
     sessionStorage.setItem("shopingBag", JSON.stringify(products))
     document.querySelector("#ItemsCountText").textContent = parseInt(document.querySelector("#ItemsCountText").textContent) + 1
-}
+}}
 const addCategory = async () => {
     try {
         const responsePost = await fetch('api/Category', {
@@ -176,5 +187,16 @@ const filterCategory = (category, index) => {
   
     filterProducts()
    
+    
+}
 
+
+
+
+const MoveToLogOut = () => {
+    sessionStorage.removeItem("id");
+    /*sessionStorage.setItem("id", null)*/
+    /* window.location.href = "Products.html"*/
+    console.log(BJHB)
+    sessionStorage.setItem("shopingBag", JSON.stringify([]))
 }

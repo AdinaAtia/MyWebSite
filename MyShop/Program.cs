@@ -51,5 +51,4 @@ app.UseAuthorization();
 app.UseMiddlewareRating();
 
 app.MapControllers();
-
 app.Run();

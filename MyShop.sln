@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{CF2379A6-E6DF-4D8E-99B9-72DB485E43D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTO", "DTO\DTO.csproj", "{0AF8988D-8B07-4587-8C51-551E254EAFCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTO", "DTO\DTO.csproj", "{0AF8988D-8B07-4587-8C51-551E254EAFCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectMyShop", "TestProjectMyShop\TestProjectMyShop.csproj", "{B33053F4-943C-4F9D-B136-DAF7425B6426}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{0AF8988D-8B07-4587-8C51-551E254EAFCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AF8988D-8B07-4587-8C51-551E254EAFCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AF8988D-8B07-4587-8C51-551E254EAFCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B33053F4-943C-4F9D-B136-DAF7425B6426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B33053F4-943C-4F9D-B136-DAF7425B6426}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B33053F4-943C-4F9D-B136-DAF7425B6426}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B33053F4-943C-4F9D-B136-DAF7425B6426}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

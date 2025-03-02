@@ -8,12 +8,51 @@ const getUserDetailsFromHtml = () => {
          Email = document.getElementById("registerEmail").value,
          Password = document.getElementById("registerPassword").value,
          FirstName = document.getElementById("registerFirstName").value,
-         LastName = document.getElementById("registerLastName").value
-    return { Email, Password, FirstName, LastName };
-}
+        LastName = document.getElementById("registerLastName").value
+
+    const level = document.querySelector("#level")
+    const passwordScore = level.value
+       
+    if (Email.indexOf('@') == -1) {
+        alert("Field Email must include @");
+        return null;
+    }
+
+    else if (passwordScore < 3) { 
+        alert("weak password")
+        return null;
+    }
+    else if (FirstName.length < 2 || FirstName.length > 20 || LastName.length < 2 || LastName.length > 20) {
+        alert("Name can be between 2 till 20 letters");
+        return null;
+    }
+    else if (!Email || !Password || !FirstName || !LastName) {
+        alert("All field are required");
+        return null;
+    }
+
+
+
+    else { 
+        return { Email, Password, FirstName, LastName };
+    }
+
+
+    }
+
+
+
+
+
+
+
+
+  
+
 const register = async () => {
     try {
         const user = getUserDetailsFromHtml();
+        
         if (user) {
             const registerPost = await fetch('api/Users', {
                 method: 'POST',
@@ -52,6 +91,9 @@ const updateLevel = (dataPost) => {
     const level = document.querySelector("#level")
     level.value = dataPost
 }
+
+
+
 const cheakPassword = async () => {
     const password = getPassword();
     if (password) {
@@ -71,7 +113,7 @@ const cheakPassword = async () => {
             });
 
 
-            const dataPost = await leavel.json();
+           const  dataPost = await leavel.json();
 
             alert(dataPost);
             updateLevel(dataPost)
