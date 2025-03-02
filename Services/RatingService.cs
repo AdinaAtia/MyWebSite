@@ -10,15 +10,16 @@ namespace Services
 {
     public class RatingService : IRatingService
     {
-        IRatingRepository repository;
-        public RatingService(IRatingRepository myRepository)
-        {
-            repository = myRepository;
-        }
+        IRatingRepository ratingRepository;
 
-        public async Task<Rating> CreateRating(Rating rating)
+
+        public RatingService(IRatingRepository ratingRepository)
         {
-            return await repository.CreateRating(rating);
+            this.ratingRepository = ratingRepository;
+        }
+        public async Task<Rating> AddRating(Rating rating)
+        {
+            return await ratingRepository.AddRating(rating);
         }
     }
 }

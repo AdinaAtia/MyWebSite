@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Builder;
+using MyShop;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Repositories;
 using Services;
 using NLog.Web;
-using MyShop;
+
 
 //using DotNetEnv;
 
@@ -47,7 +48,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAuthorization();
-app.UseRatingMiddleware();
+app.UseMiddlewareRating();
 
 app.MapControllers();
 

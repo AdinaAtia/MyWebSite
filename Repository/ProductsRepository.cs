@@ -23,14 +23,10 @@ namespace Repositories
         public async Task<List<Product>> Get(string? desc, int? minPrice, int? maxPrice, int?[] categoryIds)
         {
             var query = Manger_DB_context.Products.Where(Product =>
-              (desc == null ? (true) : (Product.ProductName.Contains(desc)))
-              && ((minPrice == null) ? (true) : (Product.Price >= minPrice))
-              && ((maxPrice == null) ? (true) : (Product.Price <= maxPrice))
-              && ((categoryIds.Length == 0) ? (true) : (categoryIds.Contains(Product.CategoryId))))
-
-
-
-
+             (desc == null ? true : Product.ProductName.Contains(desc))
+            && (minPrice == null ? true : Product.Price >= minPrice)
+            && (maxPrice == null ? true : Product.Price <= maxPrice)
+            && (categoryIds == null || categoryIds.Length == 0 ? true : categoryIds.Contains(Product.CategoryId))) // <--- שורה מתוקנת
              .OrderBy(Product => Product.Price).Include(c => c.Category);
             Console.WriteLine(query.ToQueryString());
             List<Product> products = await query.ToListAsync();

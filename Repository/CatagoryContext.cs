@@ -125,12 +125,6 @@ public partial class CatagoryContext : DbContext
                 .HasMaxLength(100);
 
             entity.Property(e => e.UserAgent).HasColumnName("USER_AGENT");
-
-            entity.Property(e => e.UserId).HasColumnName("USER_ID");
-
-            entity.HasOne(d => d.User).WithMany(p => p.Ratings)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK_RATING_Users");
         });
 
 
