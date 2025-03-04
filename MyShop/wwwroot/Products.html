@@ -44,11 +44,18 @@
                         <a href="#" title="MoveToLogOut" onclick="MoveToLogOut()" ;" accesskey="h">log out</a>
                     </li>
                     <!--<li>
-                        <a href="#" title="עזרה - שאלות נפוצות, כיצד לקנות באינטרנט, מדריך ועוד" target="_blank">עזרה</a>
-                    </li>-->
-                    <li>
-                        <a href="#" title="עדכון משתמש" onclick="MoveToUpdate()">עדכון משתמש</a>
+        <a href="#" title="עזרה - שאלות נפוצות, כיצד לקנות באינטרנט, מדריך ועוד" target="_blank">עזרה</a>
+    </li>-->
+                    <!--<li>
+        <a href="#" title="עדכון משתמש" onclick="MoveToUpdate()">עדכון משתמש</a>
+    </li>-->
+
+                    <li class="up" data-section="myAccount" id="updateUserLink" style="display: none;">
+                        <a href="#" title="עדכון פרטי משתמש" onclick="MoveToUpdate()" accesskey="h">updateUser</a>
                     </li>
+
+
+
                 </ul>
             </section>
 
@@ -63,7 +70,7 @@
                 </a>
             </span>
             <div class="Checkout ">
-                <a class="goToCart" href="ShoppingBag.html">לקופה</a>
+                <a class="goToCart" href="#" onclick="moveToCart()">לקופה</a>
             </div>
 
 

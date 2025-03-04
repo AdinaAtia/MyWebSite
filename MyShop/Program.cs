@@ -115,6 +115,7 @@ using Microsoft.Extensions.Options;
 using Repositories;
 using Services;
 using NLog.Web;
+using PresidentsApp.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -141,7 +142,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
+builder.Services.AddMemoryCache();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -154,6 +155,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAuthorization();
+app.UseErrorHandlingMiddleware();
 app.UseMiddlewareRating();
 
 app.MapControllers();

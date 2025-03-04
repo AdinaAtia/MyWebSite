@@ -8,7 +8,7 @@ const drawShoppingBag = (product) => {
 
     let tmp = document.getElementById("temp-row");
     let cloneProduct = tmp.content.cloneNode(true)
-    let url = `./pictures/${product.imgPath}.jpg`
+    let url = `./pictures/${product.imgPath}.png`
     cloneProduct.querySelector(".image").style.backgroundImage = `url(${url})`
    /* cloneProduct.querySelector(".image").src = "./pictures/" + product.imgPath + ".jpg";*/
    /* cloneProduct.querySelector("h1").textContent = product.productName*/

@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.Extensions.Logging;
 using Repositories;
 using System;
 using System.Collections.Generic;
@@ -12,16 +13,21 @@ namespace Services
     {
         IOrderRepositories repository;
         IProductsRepository _productsRepository;
-        public OrderServices(IOrderRepositories repository, IProductsRepository productsRepository)
+        ILogger<OrderServices> _logger;
+        public OrderServices(IOrderRepositories repository, IProductsRepository productsRepository, ILogger<OrderServices> logger)
         {
             this.repository = repository;
             _productsRepository = productsRepository;
+            _logger = logger;
         }
 
-     
         public async Task<Order> Post(Order order)
         {
-
+            bool? totalSum = await CheckSum(order);
+            if (totalSum==false )
+            {
+                _logger.LogWarning($"Logged From Order Repository, order sum changed by {order.UserId}!");
+            }
             return await repository.Post(order);
         }
         public async Task<Order> GetById(int id)

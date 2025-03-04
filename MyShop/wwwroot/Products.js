@@ -1,4 +1,11 @@
 ﻿addEventListener("load", () => {
+
+    if (sessionStorage.getItem('id') !== null) {
+        document.getElementById('updateUserLink').style.display = 'block';
+    }
+
+
+
     let product =  []
     let category = []
     sessionStorage.setItem("category", JSON.stringify(category))
@@ -88,7 +95,7 @@ const drawTemplate = (product) => {
 
     let tmp = document.getElementById("temp-card");
     let cloneProduct = tmp.content.cloneNode(true)
-    cloneProduct.querySelector("img").src = "./pictures/" + product.imgPath + ".jpg";
+    cloneProduct.querySelector("img").src = "./pictures/" + product.imgPath + ".png";
     cloneProduct.querySelector("h1").textContent = product.productName
     cloneProduct.querySelector(".price").innerText = product.price
     cloneProduct.querySelector(".desc").innerText = product.decripition
@@ -200,6 +207,19 @@ const MoveToLogOut = () => {
     sessionStorage.removeItem("id");
     /*sessionStorage.setItem("id", null)*/
     /* window.location.href = "Products.html"*/
-    console.log(BJHB)
+    /*console.log(BJHB)*/
     sessionStorage.setItem("shopingBag", JSON.stringify([]))
+    document.getElementById('updateUserLink').style.display = 'none';
+
+}
+
+
+const moveToCart = () => {
+
+    if (sessionStorage.getItem('id') !== null) {
+        window.location.href = "ShoppingBag.html"
+    }
+    else {
+        alert("אין לך סל אינך רשום במערכת")
+    }
 }

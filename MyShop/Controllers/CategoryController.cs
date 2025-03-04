@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using AutoMapper;
 using System.Collections;
 using DTO;
+using Microsoft.Extensions.Caching.Memory;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,17 +17,23 @@ namespace MyShop.Controllers
     {
         ICategoryServices service;
         IMapper _mapper;
-        public CategoryController(ICategoryServices service, IMapper _mapper)
+        IMemoryCache _memoryCache;
+        public CategoryController(ICategoryServices service, IMapper _mapper, IMemoryCache memoryCache)
         {
             this.service = service;
             this._mapper = _mapper;
+            this._memoryCache = memoryCache;
         }
         // GET: api/<CategoryController>
         [HttpGet]
         public async Task<ActionResult<List<getCategoryDto>>> Get()
         {
             //List<Category>
-             List<Category> category = await service.Get();
+            if (!_memoryCache.TryGetValue("categories", out List<Category> category))
+            {
+                category = await service.Get();
+                _memoryCache.Set("categories", category, TimeSpan.FromMinutes(30));
+            }
             if (category != null)
             {
                 return Ok(_mapper.Map<List< Category>, List<getCategoryDto>>(category));

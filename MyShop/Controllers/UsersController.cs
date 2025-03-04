@@ -14,6 +14,7 @@ namespace MyShop.Controllers
     {
         IUserServices service;
         IMapper _mapper;
+        ILogger<UsersController> _logger;
         public UsersController(IUserServices service, IMapper _mapper)
         {
             this.service = service;
@@ -63,6 +64,7 @@ namespace MyShop.Controllers
             User user=await service.Login(email, password);
             if (user!=null)
             {
+                _logger.LogInformation($"User name: {user.Email} Name: {user.FirstName} {user.LastName}");
                 return Ok(_mapper.Map<User, ReturnLoginUserDTO>(user));
             }        
             return NoContent();

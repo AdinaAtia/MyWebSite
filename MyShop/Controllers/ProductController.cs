@@ -14,10 +14,12 @@ namespace MyShop.Controllers
     {
         IProductsServices service;
         IMapper _mapper;
+   
         public ProductController(IProductsServices service, IMapper _mapper)
         {
             this.service = service;
             this._mapper = _mapper;
+       
         }
         // GET: api/<Product>
         [HttpGet]

@@ -155,8 +155,11 @@ namespace Repositories
         public CatagoryContext(DbContextOptions<CatagoryContext> options)
             : base(options)
         {
-        }
 
+        }
+        public CatagoryContext()
+        {
+        }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderItem> OrderItems { get; set; }
