@@ -4,12 +4,26 @@
         Password = document.getElementById("updatePassword").value,
         FirstName = document.getElementById("updateFirstName").value,
         LastName = document.getElementById("updateLastName").value;
+    if (Email.indexOf('.') == -1) {
+        alert("Field Email must include .");
+        return null;
+    }
+    else if (Email.indexOf('@') == -1) {
+        alert("Field Email must include @");
+        return null;
+    }
+    
+    else if (FirstName.length < 2 || FirstName.length > 20 || LastName.length < 2 || LastName.length > 20) {
+        alert("Name can be between 2 till 20 letters");
+        return null;
+    }
 
-    if (!Email || !Password || !FirstName || !LastName) { 
+    else if (!Email || !Password || !FirstName || !LastName) {
         alert("all fields are requierd")
     }
-    else
+    else {
         return ({ Email, Password, FirstName, LastName })
+    }
 }
 
 const update = async () => {

@@ -87,10 +87,12 @@ namespace MyShop.Controllers
         }
         [HttpPost("password")]
       
-        public int cheackPassword([FromBody] string password)
+        public IActionResult cheackPassword([FromBody] string password)
         {
             int result = service.cheackPassword(password);
-            return result;
+            return (result < 3) ?
+                   BadRequest(result) :
+            Ok(result);
         }
 
     }

@@ -1,6 +1,6 @@
 ﻿addEventListener("DOMContentLoaded", () => {
     let user = JSON.parse(sessionStorage.getItem("id")) || []
-    alert(user)
+   /* alert(user)*/
     sessionStorage.setItem("id", JSON.stringify(user))
     drawProduct()
 })
@@ -19,7 +19,7 @@ const drawShoppingBag = (product) => {
     document.querySelector("tbody").appendChild(cloneProduct)
 }
 const deleteFromCart = (product) => {
-    alert("delet")
+   /* alert("delet")*/
     let products = sessionStorage.getItem("shopingBag");
     products = JSON.parse(products);
     let i = 0;
@@ -31,8 +31,14 @@ const deleteFromCart = (product) => {
     }
     products.splice(i, 1);
     sessionStorage.setItem("shopingBag", JSON.stringify(products))
-    window.location.href ="shopingBag.html"
-    drawProduct()
+   /* window.location.href ="shopingBag.html"*/
+    /*drawProduct()*/
+    window.location.href ="ShoppingBag.html"
+    drawShoppingBag()
+
+
+
+
 }
 let priceAllProduct = 0
 const drawProduct = async () => {

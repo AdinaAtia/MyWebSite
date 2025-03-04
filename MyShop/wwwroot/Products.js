@@ -105,6 +105,7 @@ const drawProducts = async (products) => {
 const addToCart = (product) => {
     if (sessionStorage.getItem("id") == null) {
         alert("על מנת ליצור סל קניות עליך להירשם במערכת")
+
     }
 
     else { 
@@ -119,7 +120,9 @@ const addToCart = (product) => {
     products.push(product)
     sessionStorage.setItem("shopingBag", JSON.stringify(products))
     document.querySelector("#ItemsCountText").textContent = parseInt(document.querySelector("#ItemsCountText").textContent) + 1
-}}
+    }
+}
+
 const addCategory = async () => {
     try {
         const responsePost = await fetch('api/Category', {

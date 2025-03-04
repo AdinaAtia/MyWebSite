@@ -13,11 +13,14 @@ const getUserDetailsFromHtml = () => {
     const level = document.querySelector("#level")
     const passwordScore = level.value
        
-    if (Email.indexOf('@') == -1) {
+    if (Email.indexOf('.') == -1) {
+        alert("Field Email must include .");
+        return null;
+    }
+    else if (Email.indexOf('@') == -1) {
         alert("Field Email must include @");
         return null;
     }
-
     else if (passwordScore < 3) { 
         alert("weak password")
         return null;

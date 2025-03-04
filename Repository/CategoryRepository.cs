@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repositories
 {
-    public class CategoryRepository: ICategoryRepository
+    public class CategoryRepository : ICategoryRepository
     {
         CatagoryContext Manger_DB_context;
         public CategoryRepository(CatagoryContext Manger_DB_context)
@@ -28,3 +28,55 @@ namespace Repositories
     }
 }
 
+//using Entities;
+//using Microsoft.EntityFrameworkCore;
+//using System.Collections.Generic;
+//using System.Threading.Tasks;
+
+//namespace Repositories
+//{
+//    public class CategoryRepository : ICategoryRepository
+//    {
+//        private readonly IDbContextFactory<CatagoryContext> _contextFactory;
+
+//        public CategoryRepository(IDbContextFactory<CatagoryContext> contextFactory)
+//        {
+//            _contextFactory = contextFactory;
+//        }
+
+//        public async Task<List<Category>> Get()
+//        {
+//            using (var context = _contextFactory.CreateDbContext())
+//            {
+//                return await context.Categories.ToListAsync();
+//            }
+//        }
+//    }
+//}
+
+
+//using Entities;
+//using Microsoft.EntityFrameworkCore;
+//using System.Collections.Generic;
+//using System.Threading.Tasks;
+
+//namespace Repositories
+//{
+//    public class CategoryRepository : ICategoryRepository
+//    {
+//        private readonly IDbContextFactory<CatagoryContext> _contextFactory;
+
+//        public CategoryRepository(IDbContextFactory<CatagoryContext> contextFactory)
+//        {
+//            _contextFactory = contextFactory;
+//        }
+
+//        public async Task<List<Category>> Get()
+//        {
+//            using (var context = _contextFactory.CreateDbContext())
+//            {
+//                return await context.Categories.ToListAsync();
+//            }
+//        }
+//    }
+//}
