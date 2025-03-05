@@ -15,10 +15,11 @@ namespace MyShop.Controllers
         IUserServices service;
         IMapper _mapper;
         ILogger<UsersController> _logger;
-        public UsersController(IUserServices service, IMapper _mapper)
+        public UsersController(IUserServices service, IMapper _mapper, ILogger<UsersController> logger)
         {
             this.service = service;
             this._mapper = _mapper;
+            _logger = logger;
 
         }
         // GET: api/<UsersController>
@@ -50,6 +51,8 @@ namespace MyShop.Controllers
              newUser = await service.Post(newUser);
             if (newUser != null)
             {
+                _logger.LogInformation($"User name: {user.Email} Name: {user.FirstName} {user.LastName}");
+
                 return Ok(_mapper.Map<User, ReturnPostUserDTO>(newUser));
             }
             return NoContent();
@@ -64,7 +67,7 @@ namespace MyShop.Controllers
             User user=await service.Login(email, password);
             if (user!=null)
             {
-                _logger.LogInformation($"User name: {user.Email} Name: {user.FirstName} {user.LastName}");
+                //_logger.LogInformation($"User name: {user.Email} Name: {user.FirstName} {user.LastName}");
                 return Ok(_mapper.Map<User, ReturnLoginUserDTO>(user));
             }        
             return NoContent();
