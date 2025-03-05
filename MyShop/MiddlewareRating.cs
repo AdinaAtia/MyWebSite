@@ -41,6 +41,7 @@ namespace MyShop
     }
 
     // Extension method used to add the middleware to the HTTP request pipeline.
+
     public static class MiddlewareRatingExtensions
     {
         public static IApplicationBuilder UseMiddlewareRating(this IApplicationBuilder builder)
